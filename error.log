@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/anaconda3-2023.09-0-zcre7pfofz45c3btxpdk5zvcicdq5evx/bin/conda", line 12, in <module>
+    from conda.cli import main
+ModuleNotFoundError: No module named 'conda'

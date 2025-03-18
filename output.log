@@ -1,0 +1,6 @@
+Using device: cuda
+Epoch 1, Loss: 0.33800026871708794
+Checkpoint saved at /leonardo_scratch/large/userexternal/ddamian1/checkpoints/model_epoch_1.pt
+Epoch 2, Loss: 0.15541362260450434
+Checkpoint saved at /leonardo_scratch/large/userexternal/ddamian1/checkpoints/model_epoch_2.pt
+Training complete.
