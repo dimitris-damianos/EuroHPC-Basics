@@ -4,4 +4,4 @@
 -scp bigbio___pubmed_qa username@login.leonardo.cineca.it:/leonardo_home/
 -tar -xzf bigbio___pubmed_qa.tar.gz
 
-2) 
+2) Το sft_formatting.py περιέχει functions για τη μετατροπή του dataset σε sft format (καλείται στη φάση του training)
