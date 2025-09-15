@@ -1,4 +1,4 @@
-# SFT Tutorial
+#SFT Tutorial
 This is a SFT guide, where we present all the neccesary steps for downloading data, model locally, data preprocessing and SFT training. 
 
 # Enviroment creation
@@ -12,7 +12,8 @@ pip install -r requirements.txt
 ```
 This step is required for all next steps, make sure the enviroment is created and can be succesfully used.
 
-## Data preprocessing
+## Preprocessing
+Follow the instructions in [preprocessing/](./preprocessing/)
 
 ## SFT Training
 Follow the instructions in [training/](./training/)
