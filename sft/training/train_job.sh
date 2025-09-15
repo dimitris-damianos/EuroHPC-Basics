@@ -23,7 +23,7 @@ export HF_HOME="/leonardo_work/EUHPC_A06_067/hf_cache"
 export PYTHONUNBUFFERED=TRUE        # Ensure real-time logging
 
 # Multi-node launch
-accelerate launch --config_file ./multi_gpu.yaml
+srun accelerate launch --config_file ./multi_gpu.yaml \
     sft_train.py \
     --model_name_or_path $HF_HOME/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455 \
     --dataset_name "Vezora/Tested-143k-Python-Alpaca" \
