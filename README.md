@@ -1,70 +1,24 @@
-# EuroHPC-Basics
-EuroHPC's resources basic usage guide.
+# EUROHPC Guide
 
+## Basic Tutorial
+In the [tutorial/](./tutorial/) folder you can find a basic usage guide. We recommend to start with this tutorial, if you have no prior experience with SLURM-based HPC systems.
 
-### Create a conda enviroment
-Use `module avail | grep conda` to search for available conda packages. Use the following commands to load the package and create a conda enviroment.
+## SFT Tutorial
+In the [sft/](./sft/) folder you can find a SFT-specific example, including data/model downlodaing, data preprocessing, multi-gpu training.
 
-```bash
-module load anaconda3/2023.9-0
-conda create -n test-env python=3.10
-```
-To activate the created conda enviroment use teh `source` command, and install all required packages via `pip`.
+## Basic HPC Infrasructure
+The nodes (machines) in a HPC system are categorized in: 
+- **login nodes**: nodes where the user connects and can performs tasks
+- **compute nodes**: nodes where heavy tasks are perfomed, unaccessible by users.
 
-```bash
-source activate test-env
-pip install torch torchvision torchaudio
-```
+The login nodes allow for limited CPU/memory usage, and are the only ones connected to the internet. On the other hand, compute nodes are designed for heavy CPU/GPU tasks but have no internet connections.
 
-### Download your datasets
-All HPC systems share the same logical disk structure and file systems definition. The available data areas are defined, on all HPC clusters,  through predefined environment variables. 
+Due to these limitations, users have to:
+- **download base model locally**: models used in traing/inference must be saved locally before accessing compute nodes
+- **download data locally**: the datasets must be saved locally before accessing compute nodes
+- **download in batches**: in the case of large datasets (hundreds of GBs) it is recomended to download the data in smaller batches, since the download process will be killed after some time.
 
-Datasets are usually saved at `$SCRATCH` area, which provides 20TB of space, and is local, temporary (files are deleted afte 40 days) and user specific. 
-
-To download MNIST dataset to your user-specific `$SCRATCH` directory, run
-```bash
-python download_data.py
-```
-
-### Schedule jobs
-CINECA HPC uses Slurm job manager, which provides three functions:
- - Allocating access to resources (compute nodes) to users for a specified duration, allowing them to perform their work.
-
-- Providing a framework for starting, executing, and monitoring work (usually parallel jobs) on the set of allocated nodes.
-
-- Managing resource contention by handling the queue of pending jobs.
-
-To run your scipts on HPC's compute nodes, you have to specify the tasks you want to execute, and the system will manage running these tasks and returning the results to you. If the resources are not available, SLURM will hold your jobs and run them when resources become available.
-
-A simple SLURM job script `run_jobs.sh`:
-```bash
-#!/bin/bash
-#SBATCH --job-name=pytorch_test     # Name of job
-#SBATCH --partition=boost_usr_prod  # Use `sinfo` to find available partitions
-#SBATCH --gres=gpu:1                # Allocate 1 GPU
-#SBATCH --cpus-per-task=4
-#SBATCH --mem=16G
-#SBATCH --time=00:10:00             # Time limit
-#SBATCH --output=output.log         # Output file
-#SBATCH --error=error.log           # Error file
-```
-
-To run your scripts using CUDA and the created encviroment, you have to use the following commands:
-```bash
-module load cuda/12.3
-module load anaconda3/2023.09-0
-source activate test-env
-python train.py
-```
-Without them, the compute nodes won't have access to your conda enviroment.
-
-To schedule your job script, run
-```bash 
-sbatch run_jobs.sh
-```
-This will create a batch job with specific `JOB_ID`.
-To see more details abut your job use
-```bash
-scontrol show job JOB_ID
-```
-
+## Useful SLURM commands:
+- *sbatch job.sh*: submits a job script to the SLURM scheduler, which then dispatches it to available compute nodes.
+- *saldo -b*: allows user to monitor monthly and total GPU usage of their projects
+- *user -u $USER*: allows user to monitor active jobs
