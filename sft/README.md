@@ -12,8 +12,8 @@ pip install -r requirements.txt
 ```
 This step is required for all next steps, make sure the enviroment is created and can be succesfully used.
 
-## Downloading
-Follow the instructions in [downloading/](./downloading/)
+## Preprocessing
+Follow the instructions in [preprocessing/](./preprocessing/)
 
 ## SFT Training
 Follow the instructions in [training/](./training/)
