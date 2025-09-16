@@ -13,12 +13,16 @@ In order for the models and datasets to be used on the HPC, we follow these step
 
 ## Models
 Similarly to the datasets:
-1) tar -czvf models--Qwen--Qwen3-0.6B.tar.gz hf\_cache/models--Qwen--Qwen3-0.6B
-2) scp models--Qwen--Qwen3-0.6B.tar.gz [username@login.leonardo.cineca.it](mailto:username@login.leonardo.cineca.it):/leonardo\_work/project\_name/
-3) tar -xzf models--Qwen--Qwen3-0.6B.tar.gz
+1) dowload_base_model.py
+2) tar -czvf models--Qwen--Qwen3-0.6B.tar.gz hf\_cache/models--Qwen--Qwen3-0.6B
+3) scp models--Qwen--Qwen3-0.6B.tar.gz [username@login.leonardo.cineca.it](mailto:username@login.leonardo.cineca.it):/leonardo\_work/project\_name/
+4) tar -xzf models--Qwen--Qwen3-0.6B.tar.gz
 
 ## SFT formatting
 With the script sft\_formatting.py the data format is converted into a format suitable for SFT (Supervised Fine-Tuning) – either prompt-completion pairs for instruction tuning or conversation for chat template.
+
+## Tokenization
+Tokenization is performed in sft.py.
 
 ## Using HF CACHE
 Downloading models and datasets using the usual `transformers` and `datasets` methods, saves copies of said data on the cache. The compute nodes have access to these models, so it is a simple and viable alternative. 
