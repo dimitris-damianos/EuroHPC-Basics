@@ -8,6 +8,9 @@ module load anaconda3/2023.09-0        # Load the conda package
 
 conda create -n sft python=3.10
 source activate sft                     # Use source to activate conda envs
+module load cuda/12.2
+module load gcc/12.2.0
+pip install torch torch==2.6.0
 pip install -r requirements.txt
 ```
 This step is required for all next steps, make sure the enviroment is created and can be succesfully used.
