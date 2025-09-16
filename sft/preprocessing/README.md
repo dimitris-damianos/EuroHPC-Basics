@@ -20,3 +20,14 @@ Similarly to the datasets:
 ## SFT formatting
 With the script sft\_formatting.py the data format is converted into a format suitable for SFT (Supervised Fine-Tuning) – either prompt-completion pairs for instruction tuning or conversation for chat template.
 
+## Using HF CACHE
+Downloading models and datasets using the usual `transformers` and `datasets` methods, saves copies of said data on the cache. The compute nodes have access to these models, so it is a simple and viable alternative. 
+
+The only possible isue that may occur is that the user mey be required to define explicity the path of cahced dataset/model inside the `hf_cache` directory. 
+
+## Save space limits
+The `$HOME` directory has a limit of 50GB and is not designed for heavy disk use (models/datasets)
+
+The `$SCRATCH` directory provide a lot of shared space, but its contents are deleted after 40 days.
+
+The `$WORK` directory provides 4T per project.
